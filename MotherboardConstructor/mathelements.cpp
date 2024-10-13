@@ -91,3 +91,68 @@ void Point3D::move(double dx, double dy, double dz)
     this->zCoord += dz;
 }
 
+void Point3D::rotateX(double angle, double xCenter, double yCenter, double zCenter)
+{
+    this->xCoord -= xCenter;
+    this->yCoord -= yCenter;
+    this->zCoord -= zCenter;
+
+    Eigen::Matrix4f rotationMatrix;
+    rotationMatrix << 1,          0,           0, 0,
+                      0, cos(angle), -sin(angle), 0,
+                      0, sin(angle),  cos(angle), 0,
+                      0,          0,           0, 1;
+    
+    Eigen::MatrixXf coordsVector(1, 4);
+    coordsVector << this->xCoord, this->yCoord, this->zCoord, 1;
+
+    coordsVector = coordsVector * rotationMatrix;
+
+    this->xCoord = coordsVector(0, 0) + xCenter;
+    this->yCoord = coordsVector(0, 1) + yCenter;
+    this->zCoord = coordsVector(0, 2) + zCenter;
+}
+
+void Point3D::rotateY(double angle, double xCenter, double yCenter, double zCenter)
+{
+    this->xCoord -= xCenter;
+    this->yCoord -= yCenter;
+    this->zCoord -= zCenter;
+
+    Eigen::Matrix4f rotationMatrix;
+    rotationMatrix << cos(angle),  0, sin(angle), 0,
+                      0,           1,          0, 0,
+                      -sin(angle), 0, cos(angle), 0,
+                      0,           0,          0, 1;
+    
+    Eigen::MatrixXf coordsVector(1, 4);
+    coordsVector << this->xCoord, this->yCoord, this->zCoord, 1;
+
+    coordsVector = coordsVector * rotationMatrix;
+
+    this->xCoord = coordsVector(0, 0) + xCenter;
+    this->yCoord = coordsVector(0, 1) + yCenter;
+    this->zCoord = coordsVector(0, 2) + zCenter;
+}
+
+void Point3D::rotateZ(double angle, double xCenter, double yCenter, double zCenter)
+{
+    this->xCoord -= xCenter;
+    this->yCoord -= yCenter;
+    this->zCoord -= zCenter;
+
+    Eigen::Matrix4f rotationMatrix;
+    rotationMatrix << cos(angle), -sin(angle), 0, 0,
+                      sin(angle),  cos(angle), 0, 0,
+                      0,                    0, 1, 0,
+                      0,                    0, 0, 1;
+    
+    Eigen::MatrixXf coordsVector(1, 4);
+    coordsVector << this->xCoord, this->yCoord, this->zCoord, 1;
+
+    coordsVector = coordsVector * rotationMatrix;
+
+    this->xCoord = coordsVector(0, 0) + xCenter;
+    this->yCoord = coordsVector(0, 1) + yCenter;
+    this->zCoord = coordsVector(0, 2) + zCenter;
+}
