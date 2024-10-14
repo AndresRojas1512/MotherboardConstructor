@@ -68,4 +68,17 @@ public:
     component_t getComponentType();
 };
 
+class Light
+{
+private:
+    std::vector<std::vector<double>> shadowMap;
+    Eigen::Matrix4f transformationMatrix;
+    int xAngle;
+    int yAngle;
+
+public:
+    Light(Eigen::Matrix4f &trMatrix);
+    Light() { };
+};
+
 #endif // COMPONENTS_HPP
