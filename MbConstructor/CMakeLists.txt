@@ -45,6 +45,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         addmotherboard.hpp
         facade.hpp
         components.hpp
+        components.cpp
 
     )
 else()

@@ -5,6 +5,13 @@
 #include <vector>
 #include "mathelements.hpp"
 
+enum component_t
+{
+    Motherboard,
+    GPU,
+    RAM
+};
+
 class Vertex
 {
 private:
@@ -47,8 +54,18 @@ private:
 
     // define the position
     size_t modelNum;
+    component_t componentType;
 public:
+    PolygonModel() { }
+    PolygonModel(std::vector<Vertex> verticesParam, std::vector<Facet> facetsParam) : vertices(verticesParam), facets(facetsParam) { }
+    PolygonModel(std::vector<Vertex> verticesParam, std::vector<Facet> facetsParam, std::string nameParam) : vertices(verticesParam), facets(facetsParam), componentName(nameParam) { }
 
+    ~PolygonModel() { };
+
+    // getters
+    const std::vector<Vertex> getVertices();
+    const std::vector<Facet> getFacets();
+    component_t getComponentType();
 };
 
 #endif // COMPONENTS_HPP
