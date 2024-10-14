@@ -68,7 +68,7 @@ public:
     component_t getComponentType();
 };
 
-class Light
+class Light // TODO
 {
 private:
     std::vector<std::vector<double>> shadowMap;
@@ -79,6 +79,19 @@ private:
 public:
     Light(Eigen::Matrix4f &trMatrix);
     Light() { };
+};
+
+class SceneInfinite
+{
+    SceneInfinite();
+    SceneInfinite(size_t widthParam, size_t heightParam);
+
+    operator bool() const;
+
+    // getters
+    size_t getWidth();
+
+    // setters
 };
 
 #endif // COMPONENTS_HPP
