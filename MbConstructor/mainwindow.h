@@ -4,6 +4,11 @@
 #include <QMainWindow>
 #include <QGraphicsView>
 #include <QMouseEvent>
+#include <QDebug>
+#include <QErrorMessage>
+#include <QShortcut>
+#include <QTimer>
+#include "addmotherboard.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -19,6 +24,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void on_addMotherboardButton_clicked();
 
 private:
     Ui::MainWindow *ui;
