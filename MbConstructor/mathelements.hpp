@@ -25,27 +25,29 @@ class Point2D
 
 class Point3D
 {
-    private:
-        double xCoord;
-        double yCoord;
-        double zCoord;
-    
-    public:
-        // getters
-        double getXCoord();
-        double getYCoord();
-        double getZCoord();
-    
-        //setters
-        void setXCoord(double xVal);
-        void setYCoord(double yVal);
-        void setZCoord(double zVal);
+public:
+    Point3D() { };
+    Point3D(double xCoordParam, double yCoordParam, double zCoordParam) : xCoord(xCoordParam), yCoord(yCoordParam), zCoord(zCoordParam) { }
 
-        void scale(double coeff, double xCenter, double yCenter, double zCenter);
-        void move(double dx, double dy, double dz);
-        void rotateX(double angle, double xCenter, double yCenter, double zCenter);
-        void rotateY(double angle, double xCenter, double yCenter, double zCenter);
-        void rotateZ(double angle, double xCenter, double yCenter, double zCenter);
+    double getXCoord();
+    void setXCoord(double xVal);
+
+    double getYCoord();
+    void setYCoord(double yVal);
+
+    double getZCoord();
+    void setZCoord(double zVal);
+
+    void scale(double coeff, double xCenter, double yCenter, double zCenter);
+    void move(double dx, double dy, double dz);
+    void rotateX(double angle, double xCenter, double yCenter, double zCenter);
+    void rotateY(double angle, double xCenter, double yCenter, double zCenter);
+    void rotateZ(double angle, double xCenter, double yCenter, double zCenter);
+
+private:
+    double xCoord;
+    double yCoord;
+    double zCoord;
 };
 
 class MathVector
