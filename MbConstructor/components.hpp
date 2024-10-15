@@ -40,30 +40,50 @@ public:
 class PolygonModel
 {
 public:
-    enum component_t
-    {
-        Motherboard,
-        GPU,
-        RAM
-    };
-    PolygonModel() { }
-    PolygonModel(std::vector<Vertex> verticesParam, std::vector<Facet> facetsParam) : vertices(verticesParam), facets(facetsParam) { }
-    PolygonModel(std::vector<Vertex> verticesParam, std::vector<Facet> facetsParam, std::string nameParam) : vertices(verticesParam), facets(facetsParam), componentName(nameParam) { }
+    PolygonModel() { } // DONE
+    PolygonModel(std::vector<Vertex> verticesParam, std::vector<Facet> facetsParam) : vertices(verticesParam), facets(facetsParam) { } // DONE
+    PolygonModel(std::vector<Vertex> verticesParam, std::vector<Facet> facetsParam, std::string nameParam) : vertices(verticesParam), facets(facetsParam), modelName(nameParam) { } // DONE
 
     ~PolygonModel() { };
 
-    // getters
-    const std::vector<Vertex> getVertices();
-    const std::vector<Facet> getFacets();
-    component_t getComponentType();
+    enum model_t
+    {
+        Motherboard,
+        RAM,
+        GPU
+    };
 
+    const std::vector<Vertex> getVertices(); // DONE
+
+    const std::vector<Facet> getFacets(); // DONE
+
+    model_t geModelType(); // DONE
+    void setModelType(model_t modelTypeParam); // DONE
+
+    void setUsedCell(int xCellParam, int yCellParam, double zCellParam); // TODO
+    int getUsedXCell(); // TODO
+    int getUsedYCell(); // TODO
+    int getUsedZCell(); // TODO
+
+    int getModelWidth(); // DONE
+    void setModelWidth(int modelWidthParam); // DONE
+
+    int getModelLength(); // DONE
+    void setModelLength(int modelLengthParam); // DONE
 private:
+    int xCell;
+    int yCell;
+    double zCell;
+
     std::vector<Vertex> vertices;
     std::vector<Facet> facets;
-    std::string componentName;
+    std::string modelName;
+
+    int modelWidth;
+    int modelLength;
 
     size_t modelNum;
-    component_t componentType;
+    model_t modelType;
 };
 
 class Light

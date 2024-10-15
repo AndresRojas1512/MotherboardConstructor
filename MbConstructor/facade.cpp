@@ -13,7 +13,7 @@ void Drawer::zBuffer(SceneInfinite *scene, size_t bufferHeight, size_t bufferWid
     PolygonModel component;
     std::vector<Facet> facets;
     std::vector<Vertex> vertices;
-    PolygonModel::component_t componentType;
+    PolygonModel::model_t componentType;
 
     for (size_t i = 0; i < scene->getComponentsNum(); i++)
     {
