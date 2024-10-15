@@ -12,15 +12,15 @@ public:
     Light(Eigen::Matrix4f &trMatrixParam); // DONE
 
     std::vector<std::vector<double>> &getShadowMap(); // DONE
-    void setShadowMap(std::vector<std::vector<double>> &shadowMapParam);  // TODO
-    void clearShadowMap(); // TODO
+    void setShadowMap(std::vector<std::vector<double>> &shadowMapParam);
+    void clearShadowMap(); // DONE
 
-    int getXAngle(); // TODO
-    int getYAngle(); // TODO
-    void setAngles(int xAngleParam, int yAngleParam); // TODO
+    int getXAngle(); // DONE
+    int getYAngle(); // DONE
+    void setAngles(int xAngleParam, int yAngleParam); // DONE
 
-    Eigen::Matrix4f getTrMatrix(); // TODO
-    void setTrMatrix(Eigen::Matrix4f &matrix); // TODO
+    Eigen::Matrix4f getTrMatrix(); // DONE
+    void setTrMatrix(Eigen::Matrix4f &matrix); // DONE
 private:
     std::vector<std::vector<double>> shadowMap;
     Eigen::Matrix4f transformationMatrix;

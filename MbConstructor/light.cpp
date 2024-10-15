@@ -21,30 +21,37 @@ void Light::setShadowMap(std::vector<std::vector<double>> &shadowMapParam)
 
 void Light::clearShadowMap()
 {
-    // two cycles?
+    for (size_t i = 0; i < this->shadowMap.size(); i++)
+    {
+        for (size_t j = 0; j < this->shadowMap.at(0).size(); j++)
+        {
+            this->shadowMap.at(i).at(j) = 0;
+        }
+    }
 }
 
 int Light::getXAngle()
 {
-
+    return this->xAngle;
 }
 
 int Light::getYAngle()
 {
-
+    return this->yAngle;
 }
 
 void Light::setAngles(int xAngleParam, int yAngleParam)
 {
-
+    this->xAngle = xAngleParam;
+    this->yAngle = yAngleParam;
 }
 
 Eigen::Matrix4f Light::getTrMatrix()
 {
-
+    return this->transformationMatrix;
 }
 
 void Light::setTrMatrix(Eigen::Matrix4f &matrix)
 {
-
+    this->transformationMatrix = matrix;
 }
