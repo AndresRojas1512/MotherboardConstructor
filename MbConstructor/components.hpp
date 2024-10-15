@@ -4,13 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "mathelements.hpp"
-
-enum component_t
-{
-    Motherboard,
-    GPU,
-    RAM
-};
+#include "config.hpp"
 
 class Vertex
 {
@@ -23,11 +17,9 @@ public:
     Vertex(Point3D &positionParam, std::vector<size_t> &facetsParam) : position(positionParam), facets(facetsParam) { }
     Vertex(Point3D &positionParam) : position(positionParam) { }
 
-    // getters
     const Point3D &getPostion() const;
     const std::vector<size_t> getFacets();
 
-    // setters
     void setPosition(Point3D positionParam);
     void setFacets(std::vector<size_t> facetsParam);
 };
@@ -47,15 +39,13 @@ public:
 
 class PolygonModel
 {
-private:
-    std::vector<Vertex> vertices;
-    std::vector<Facet> facets;
-    std::string componentName;
-
-    // define the position
-    size_t modelNum;
-    component_t componentType;
 public:
+    enum component_t
+    {
+        Motherboard,
+        GPU,
+        RAM
+    };
     PolygonModel() { }
     PolygonModel(std::vector<Vertex> verticesParam, std::vector<Facet> facetsParam) : vertices(verticesParam), facets(facetsParam) { }
     PolygonModel(std::vector<Vertex> verticesParam, std::vector<Facet> facetsParam, std::string nameParam) : vertices(verticesParam), facets(facetsParam), componentName(nameParam) { }
@@ -66,9 +56,17 @@ public:
     const std::vector<Vertex> getVertices();
     const std::vector<Facet> getFacets();
     component_t getComponentType();
+
+private:
+    std::vector<Vertex> vertices;
+    std::vector<Facet> facets;
+    std::string componentName;
+
+    size_t modelNum;
+    component_t componentType;
 };
 
-class Light // TODO
+class Light
 {
 private:
     std::vector<std::vector<double>> shadowMap;
@@ -83,15 +81,43 @@ public:
 
 class SceneInfinite
 {
-    SceneInfinite();
-    SceneInfinite(size_t widthParam, size_t heightParam);
+public:
+    SceneInfinite() {} // DONE
+    SceneInfinite(size_t widthParam, size_t heightParam); // DONE
+
+    void initUsedZCells(); // DONE
+    void clearUsedZCells(size_t index); // TODO
 
     operator bool() const;
 
-    // getters
     size_t getWidth();
+    size_t getHeight();
 
-    // setters
+    size_t getComponentsNum(); // DONE
+    PolygonModel &getComponent(size_t index); // DONE
+    void setComponent(size_t index, PolygonModel &component); // DONE
+    void addComponent(PolygonModel &component); // DONE
+    void deleteComponent(size_t index); // TODO
+
+    void toCenter();
+
+private: // DONE
+    size_t width;
+    size_t height;
+
+    PolygonModel *motherboardModel = nullptr;
+
+    Eigen::Matrix4f transformationMatrix;
+
+    size_t componentsNum = 0;
+    std::vector<PolygonModel> components;
+
+    size_t lightsNum = 0;
+    std::vector<Light> lights;
+
+    Point3D center;
+
+    std::vector<std::vector<std::vector<double>>> usedZCells;
 };
 
 #endif // COMPONENTS_HPP

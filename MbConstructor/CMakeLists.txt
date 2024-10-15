@@ -21,6 +21,7 @@ set(PROJECT_SOURCES
     addmotherboard.cpp
     modgraphicsview.cpp
     components.cpp
+    facade.cpp
 )
 
 set(PROJECT_HEADERS
@@ -43,6 +44,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         ${PROJECT_HEADERS}
         ${PROJECT_UIS}
+        config.hpp
     )
 else()
     add_executable(MbConstructor

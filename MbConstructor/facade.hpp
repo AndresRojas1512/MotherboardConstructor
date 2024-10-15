@@ -10,9 +10,25 @@ class Drawer
 public:
     void zBuffer(SceneInfinite *scene, size_t bufferHeight, size_t bufferWidth);
     void zBufferModel(std::vector<Facet> &facets, std::vector<Vertex> vertices, Eigen::Matrix4f &trMatrix, size_t color, SceneInfinite *scene, size_t bufferWidth, size_t bufferHeight);
-    void shadowMapModel();
+private:
+    std::vector<std::vector<double>> depthBuffer;
+    std::vector<std::vector<size_t>> borderBuffer;
+};
 
-    QGraphicsScene *drawScene();
+
+class Facade
+{
+public:
+    Facade();
+
+    void setSceneInfinite(size_t widthParam, size_t heightParam);
+    void changeSceneInfinte(size_t widthParam, size_t heightParam);
+    bool isSceneSet();
+
+    QGraphicsScene *drawScene(QRectF rect);
+private:
+    SceneInfinite *scene = nullptr;
+    Drawer *drawer;
 };
 
 #endif // FACADE_HPP
