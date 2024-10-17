@@ -10,4 +10,7 @@
 #define BASE_Z 8000
 #define BASE_START 10, 10, BASE_Z
 
+#define LIGHT_X 1000
+#define LIGHT_Y 1000
+
 #endif // CONFIG_HPP
